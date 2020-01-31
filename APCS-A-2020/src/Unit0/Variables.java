@@ -1,0 +1,61 @@
+package Unit0;
+//(c) A+ Computer Science
+//www.apluscompsci.com
+
+//Name -
+//Date -
+//Class -
+//Lab  -
+
+public class Variables
+{
+	public static void main ( String[] args )
+	{
+		//define 1 variable of each of the
+		//following data types
+		//byte		short		int 		long
+		//float		double
+		//char      boolean		String
+
+		//integer variables
+		byte byteOne = Byte.MAX_VALUE;
+		short shortOne = Short.MAX_VALUE;
+		int intOne = Integer.MAX_VALUE;
+		long longOne = Long.MAX_VALUE;
+
+		//decimal variables
+
+		float floatOne = Float.MAX_VALUE;
+		double doubleOne = Double.MAX_VALUE;
+		//other integer types
+		
+		char charOne = 'a';
+		boolean booleanOne = true;
+		String stringOne = "string";
+
+		//other types
+
+
+		//output your information here
+		System.out.println("/////////////////////////////////");
+		System.out.println("*                               *");
+		System.out.println("*        integer types          *");
+		System.out.println("*                               *");
+		System.out.println("*bit - byteOne = "+byteOne+"\t\t*");
+		System.out.println("*short - shortOne = "+shortOne+"*");
+		System.out.println("*int - intOne = "+intOne+"\t\t*");
+		System.out.println("*long - longOne = "+longOne+"\t\t*");
+
+
+
+
+
+
+
+
+
+
+
+
+	}
+}
