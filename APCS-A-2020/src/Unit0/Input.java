@@ -23,19 +23,69 @@ public class Input {
 		float floatOne, floatTwo;
 		short shortOne, shortTwo;
 
+		
+		//Assigning integer
 		System.out.print("Enter an integer :: ");
 		intOne = keyboard.nextInt();
 
 		System.out.print("Enter an integer :: ");
 		intTwo = keyboard.nextInt();
 
+		
+		
+		//Assigning double
+		System.out.println();
+		System.out.print("Enter a double :: ");
+		doubleOne = keyboard.nextDouble();
+
+		System.out.print("Enter a double :: ");
+		doubleTwo = keyboard.nextDouble();
+		
+		
+		
+		//Assigning float
+		System.out.println();
+		System.out.print("Enter a float :: ");
+		floatOne = keyboard.nextFloat();
+
+		System.out.print("Enter a float :: ");
+		floatTwo = keyboard.nextFloat();
+		
+		
+		
+		//Assigning short
+		System.out.println();
+		System.out.print("Enter a short :: ");
+		shortOne = keyboard.nextShort();
+
+		System.out.print("Enter a short :: ");
+		shortTwo = keyboard.nextShort();
+		
+		
 		// add in input for all variables
 
+		
+		//Printing integer
 		System.out.println();
 		System.out.println("integer one = " + intOne);
 		System.out.println("integer two = " + intTwo);
 
 		// add in output for all variables
+		
+		//Printing double
+		System.out.println();
+		System.out.println("double one = " + doubleOne);
+		System.out.println("double two = " + doubleTwo);
+		
+		//Printing float
+		System.out.println();
+		System.out.println("float one = " + floatOne);
+		System.out.println("float two = " + floatTwo);
+		
+		//Printing short
+		System.out.println();
+		System.out.println("short one = " + shortOne);
+		System.out.println("short two = " + shortTwo);
 
 	}
 }
