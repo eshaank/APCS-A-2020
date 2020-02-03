@@ -37,14 +37,27 @@ public class Variables
 
 
 		//output your information here
-		System.out.println("/////////////////////////////////");
-		System.out.println("*                               *");
-		System.out.println("*        integer types          *");
-		System.out.println("*                               *");
-		System.out.println("*bit - byteOne = "+byteOne+"\t\t*");
-		System.out.println("*short - shortOne = "+shortOne+"*");
-		System.out.println("*int - intOne = "+intOne+"\t\t*");
-		System.out.println("*long - longOne = "+longOne+"\t\t*");
+		System.out.println("/////////////////////////////////////////////////");
+		System.out.println("*                               		*");
+		System.out.println("*        integer types          		*");
+		System.out.println("*                               		*");
+		System.out.println("*8bit - byteOne = "+byteOne+"				*");
+		System.out.println("*16short - shortOne = "+shortOne+"			*");
+		System.out.println("*32int - intOne = "+intOne+"			*");
+		System.out.println("*64long - longOne = "+longOne+"\t\t*");
+		System.out.println("*                               		*");
+		System.out.println("*        decimal types          		*");
+		System.out.println("*                               		*");
+		System.out.println("*float - floatOne = "+floatOne+"		*");
+		System.out.println("*double - doubleOne = "+doubleOne+"	*");
+		System.out.println("*                               		*");
+		System.out.println("*        other types          			*");
+		System.out.println("*                               		*");
+		System.out.println("*char - charOne = "+charOne+"				*");
+		System.out.println("*boolean - booleanOne = "+booleanOne+"			*");
+		System.out.println("*string - stringOne = "+stringOne+"			*");
+
+		
 
 
 
