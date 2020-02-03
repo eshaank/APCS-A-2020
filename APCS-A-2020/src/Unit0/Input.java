@@ -1,19 +1,21 @@
 package Unit0;
 //(c) A+ Computer Science
+
 //www.apluscompsci.com
 
-//Name -
-//Date -
-//Class -
+//Name - Eshaan Kansagara
+//Date - 2/2/2020
+//Class - AP CSA
 //Lab  -
 
 import static java.lang.System.*;
 import java.util.Scanner;
 
-public class Input
-{
-	public static void main (String[] args)
-	{
+public class Input {
+	public static void main(String[] args) {
+
+		System.out.print("Eshaan Kansagara \t  2/2/20 \n\n");
+
 		Scanner keyboard = new Scanner(System.in);
 
 		int intOne, intTwo;
@@ -21,24 +23,19 @@ public class Input
 		float floatOne, floatTwo;
 		short shortOne, shortTwo;
 
-
 		System.out.print("Enter an integer :: ");
 		intOne = keyboard.nextInt();
-
 
 		System.out.print("Enter an integer :: ");
 		intTwo = keyboard.nextInt();
 
-
-		//add in input for all variables
-
+		// add in input for all variables
 
 		System.out.println();
-		System.out.println("integer one = " + intOne );
-		System.out.println("integer two = " + intTwo );
+		System.out.println("integer one = " + intOne);
+		System.out.println("integer two = " + intTwo);
 
-		//add in output for all variables
-
+		// add in output for all variables
 
 	}
 }
