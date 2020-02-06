@@ -28,6 +28,23 @@ public class MPHRunner {
 		test.print();
 
 		// add more test cases
+		System.out.println("Sample Data :: ");
+		
+		test.setNums(45, 0, 32);
+		test.calcMPH();
+		test.print();
+		
+		test.setNums(96, 1, 43);
+		test.calcMPH();
+		test.print();
+		
+		test.setNums(100, 2, 25);
+		test.calcMPH();
+		test.print();
+		
+		test.setNums(50, 2, 25);
+		test.calcMPH();
+		test.print();
 
 	}
 }
