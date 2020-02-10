@@ -16,7 +16,6 @@ public class AddSubMult
 		else if(b > a) {
 			return b - a;
 		}
-		
 		return a * b;
 	}
 }
