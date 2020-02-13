@@ -41,8 +41,8 @@ public class Perfect {
 	// add a toString
 	public String toString() {
 		if(isPerfect()) {
-			return number + " is perfect";
+			return number + " is perfect \n";
 		}
-		return number + " is not perfect";
+		return number + " is not perfect \n";
 	}
 }
