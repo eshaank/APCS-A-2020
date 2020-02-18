@@ -7,16 +7,9 @@ class Main {
 	public static void main(String[] args) {
 		// test reading from files
 		// read in the positive adjectives in postiveAdjectives.txt
-		try {
-			Scanner input = new Scanner(new File("src/ConsumerLab/positiveAdjectives.txt"));
-			while (input.hasNextLine()) {
-				String temp = input.nextLine().trim();
-				System.out.println(temp);
+		System.out.println(Review.totalSentiment("src/ConsumerLab/simpleReview.txt"));
+		System.out.println(Review.totalSentiment("src/ConsumerLab/26WestReview.txt"));
 
-			}
-			input.close();
-		} catch (Exception e) {
-			System.out.println("Error reading or parsing postitiveAdjectives.txt\n" + e);
-		}
+
 	}
 }
