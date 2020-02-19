@@ -36,7 +36,7 @@ public class Review {
 			Scanner input = new Scanner(new File("src/ConsumerLab/positiveAdjectives.txt"));
 			while (input.hasNextLine()) {
 				String temp = input.nextLine().trim();
-				System.out.println(temp);
+				// System.out.println(temp);
 				posAdjectives.add(temp);
 			}
 			input.close();
@@ -148,43 +148,79 @@ public class Review {
 		String read = textToString(filename);
 		// set up a sentimentTotal variable
 		double sentimentTotal = 0;
-		String temp;
+		String temp = "";
 		// loop through the file contents
 		for (int i = 0; i < read.length(); i++) {
-		
-			if(read.charAt(i) == '!' || read.charAt(i) == '?' || read.charAt(i) == '.' || read.charAt(i) == ',' || read.charAt(i) == '/' || read.charAt(i) == '('|| read.charAt(i) == ')' || read.charAt(i) == ':') {
-			
-		read = read.substring(0, i) + read.substring(i + 1);
+
+			if (read.charAt(i) == '!' || read.charAt(i) == '?' || read.charAt(i) == '.' || read.charAt(i) == ','
+					|| read.charAt(i) == '/' || read.charAt(i) == '(' || read.charAt(i) == ')' || read.charAt(i) == ':'
+					|| read.charAt(i) == '$') {
+
+				read = read.substring(0, i) + read.substring(i + 1);
 			}
 		}
-		String[] arr = read.split(" ");
-		for (int i = 0; i < arr.length; i++) {
-			System.out.println(arr[i]);
-			sentimentTotal += sentimentVal(arr[i]);
+//		String[] arr = read.split(" ");
+//		for (int i = 0; i < arr.length; i++) {
+//			System.out.println(arr[i]);
+//			sentimentTotal += sentimentVal(arr[i]);
+//		}
+
+		String lastWord = read.substring(read.lastIndexOf(" "), read.length());
+
+		for (int j = 0; j < read.length() - lastWord.length(); j++) {
+			temp = read.substring(j, read.indexOf(" ", j));
+			// System.out.println(temp);
+			j += temp.length();
+			sentimentTotal += sentimentVal(temp);
 		}
-
-			
-		
-		// find each word
-
-		// add in its sentimentVal
-		
-		// set the file contents to start after this word
 
 		return sentimentTotal;
 	}
+
+	public static String fakeReview(String filename) {
+		String read = textToString(filename);
+
+		String temp = "";
+
+
+
+		//String lastWord = read.substring(read.lastIndexOf(" "), read.length());
+
+		for (int j = 0; j < read.length(); j++) {
+			if (read.charAt(j) == '*') {
+				if (sentimentVal(temp = read.substring(j, read.indexOf(" ", j))) >= 0) {
+					temp = read.substring(0, j) + randomPositiveAdj()  
+							+ read.substring(j + randomPositiveAdj().length(), read.length());
+				}
+			}
+
+		}
+
+		return temp;
+
+	}
+
 	/**
 	 * Activity 2 starRating method Write the starRating method here which returns
 	 * the number of stars for the review based on its totalSentiment.
 	 */
 	public static int starRating(String filename) {
 		// call the totalSentiment method with the fileName
-
+		double total = totalSentiment(filename);
 		// determine number of stars between 0 and 4 based on totalSentiment value
 		int stars = 0;
 		// write if statements here
-
+		if (total >= 30) {
+			return 4;
+		} else if (total >= 20) {
+			return 3;
+		} else if (total >= 10) {
+			return 2;
+		} else if (total > 0) {
+			return 1;
+		}
 		// return number of stars
 		return stars;
 	}
+
 }
