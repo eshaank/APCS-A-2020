@@ -14,8 +14,6 @@ public class Card {
 	// int face
 	private String suit;
 	private int face;
-	private String rank;
-	private int pointValue;
 
 	// constructors
 	public Card(String s, int f) {
