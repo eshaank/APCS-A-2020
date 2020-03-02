@@ -21,11 +21,6 @@ public class BlackJackCard extends Card
 		return getFace();
 	}
 
-  	private int getFace() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	//toString
   	public String toString()
   	{
