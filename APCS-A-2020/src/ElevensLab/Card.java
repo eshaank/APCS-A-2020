@@ -14,6 +14,8 @@ public class Card {
 	// int face
 	private String suit;
 	private int face;
+	private String rank;
+	private int pointValue;
 
 	// constructors
 	public Card(String s, int f) {
@@ -22,6 +24,11 @@ public class Card {
 		setFace(f);
 	}
 
+	public Card(String cardRank, String cardSuit, int cardPointValue) {
+		suit = cardSuit;
+		rank = cardRank;
+		pointValue = cardPointValue;
+	}
 
 	// modifiers
 	// set methods
@@ -43,6 +50,25 @@ public class Card {
 		return face;
 	}
 
+	public String getRank() {
+		return rank;
+	}
+
+	public int getPointValue() {
+		return pointValue;
+	}
+
+	public boolean matches(Card otherCard) {
+		if(this.getSuit().equals(otherCard.getSuit()) && this.getRank().equals(otherCard.getRank()) && this.getPointValue() == otherCard.getPointValue()) {
+			return true;
+		}
+		else if(this.getSuit().equals(otherCard.getSuit()) && this.getPointValue() == otherCard.getPointValue()) {
+			return true;
+		}
+		else {
+			return false;
+		}
+	}
 
 	// toString
 	public String toString() {

@@ -16,6 +16,7 @@ class Deck {
 
 	private List<Card> cards;
 	private int top;
+	private int size;
 
 	// make a Deck constructor
 	// refer cards to new ArrayList
@@ -25,7 +26,7 @@ class Deck {
 	// loop through all faces 1 to 13
 	// add a new TwentyOneCard to the deck
 	public Deck() {
-		top = 0;
+		top = 51;
 		cards = new ArrayList<Card>();
 
 		for (int i = 0; i < 4; i++) {
@@ -35,16 +36,25 @@ class Deck {
 		}
 	}
 
+	public Deck(String[] ranks, String[] suits, int[] values) {
+		top = 51;
+		cards = new ArrayList<Card>();
 
+		for (int i = 0; i < 4; i++) {
+			for (int k = 1; k <= 13; k++) {
+				cards.add(new Card(SUITS[i], k));
+			}
+		}
+	}
 
 	// make a dealCard() method that returns the top card
 	public Card dealCard() {
 
-		if (top > 51) {
-			top = 0;
+		if (top < 0) {
+			top = 51;
 		}
 		Card card = cards.get(top);
-		top++;
+		top--;
 		return card;
 	}
 
@@ -52,17 +62,54 @@ class Deck {
 	// use Colletions.shuffle
 	// reset the top card
 	public void shuffle() {
+		resetTop();
+		//Shuffler.perfectShuffle(cards);
+		//Shuffler.selectionShuffle(cards);
 		Collections.shuffle(cards);
-		top = 0;
 
 	}
 
+	public void resetTop() {
+		size = cards.size();
+		top = cards.size() - 1;
+	}
+
 	public boolean isEmpty() {
-		return cards.isEmpty();
+		return size() == 0;
 	}
 
 	public int size() {
 		return cards.size();
+	}
+
+	public String toString() {
+		String rtn = "size = " + size + "\nUndealt cards: \n";
+
+		for (int k = size - 1; k >= 0; k--) {
+			rtn = rtn + cards.get(k);
+			if (k != 0) {
+				rtn = rtn + ", ";
+			}
+			if ((size - k) % 2 == 0) {
+				// Insert carriage returns so entire deck is visible on console.
+				//rtn = rtn + "\n";
+			}
+		}
+
+		rtn = rtn + "\nDealt cards: \n";
+		for (int k = cards.size() - 1; k >= size; k--) {
+			rtn = rtn + cards.get(k);
+			if (k != size) {
+				rtn = rtn + ", ";
+			}
+			if ((k - cards.size()) % 2 == 0) {
+				// Insert carriage returns so entire deck is visible on console.
+				//rtn = rtn + "\n";
+			}
+		}
+
+		rtn = rtn + "\n";
+		return rtn;
 	}
 
 }
