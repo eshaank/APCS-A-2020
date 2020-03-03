@@ -8,17 +8,17 @@ import static java.lang.System.*;
 
 class Rational implements Comparable<Rational> {
 	// add two instance variables
-	private double num;
-	private double dem;
+	private int numerator;
+	private int denominator;
 	// write two constructors
 
 	public Rational() {
-		num = 1;
-		dem = 2;
+		numerator = 1;
+		denominator = 2;
 	}
-	// write a setRational method
 
-	// write a set method for numerator and denominator
+
+	
 
 	public Rational(int i, int j) {
 		
@@ -37,6 +37,13 @@ class Rational implements Comparable<Rational> {
 	}
 
 	private int gcd(int numOne, int numTwo) {
+		int min = Math.min(numOne, numTwo);
+		for (int x = min; x > 1; x--) {
+			if(numOne%x == 0 && numTwo%x == 0) {
+				return x;
+			}
+			return 1;
+		}
 
 		return 1;
 	}
@@ -59,8 +66,17 @@ class Rational implements Comparable<Rational> {
 		return -1;
 	}
 
+	// write a setRational method
 	public void setRational(int num1, int num2) {
 
+	}
+	
+	// write a set method for numerator and denominator
+	public void setDenom(int d) {
+		denominator = d;
+	}
+	public void setNumer(int n) {
+		numerator = n;
 	}
 
 	// write toString() method
