@@ -55,6 +55,12 @@ class Rational implements Comparable<Rational> {
 	// ACCESSORS
 
 	// write get methods for numerator and denominator
+	public int getDenom() {
+		return denominator;
+	}
+	public int getNumer() {
+		return numerator;
+	}
 
 	public boolean equals(Object obj) {
 
