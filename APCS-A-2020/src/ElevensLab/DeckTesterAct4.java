@@ -22,7 +22,7 @@ public class DeckTesterAct4 {
 		System.out.println();
 
 		System.out.println("**** Deal a Card ****");
-		System.out.println("  deal: " + d.deal());
+		System.out.println("  deal: " + d.dealCard());
 		System.out.println();
 		System.out.println();
 
@@ -35,7 +35,7 @@ public class DeckTesterAct4 {
 
 		System.out.println("**** Deal Remaining 5 Cards ****");
 		for (int i = 0; i < 5; i++) {
-			System.out.println("  deal: " + d.deal());
+			System.out.println("  deal: " + d.dealCard());
 		}
 		System.out.println();
 		System.out.println();
@@ -48,7 +48,7 @@ public class DeckTesterAct4 {
 		System.out.println();
 
 		System.out.println("**** Deal a Card From Empty Deck ****");
-		System.out.println("  deal: " + d.deal());
+		System.out.println("  deal: " + d.dealCard());
 		System.out.println();
 		System.out.println();
 
