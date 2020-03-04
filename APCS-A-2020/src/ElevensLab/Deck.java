@@ -26,35 +26,45 @@ class Deck {
 	// loop through all faces 1 to 13
 	// add a new TwentyOneCard to the deck
 	public Deck() {
-		top = 51;
+		top = size - 1;
 		cards = new ArrayList<Card>();
 
 		for (int i = 0; i < 4; i++) {
-			for (int k = 1; k <= 13; k++) {
-				cards.add(new Card(SUITS[i], k));
+			for (int j = 1; j <= 13; j++) {
+				cards.add(0, new Card(SUITS[i], j));
 			}
 		}
 	}
 
 	public Deck(String[] ranks, String[] suits, int[] values) {
-		top = 51;
+		
 		cards = new ArrayList<Card>();
 
 		for (int i = 0; i < 4; i++) {
-			for (int k = 1; k <= 13; k++) {
-				cards.add(new Card(SUITS[i], k));
+			for (int j = 1; j <= 13; j++) {
+				cards.add(0, new Card(SUITS[i], j));
 			}
 		}
+		size = cards.size();
+		top = size - 1;
+		shuffle();
 	}
 
 	// make a dealCard() method that returns the top card
 	public Card dealCard() {
-
-		if (top < 0) {
-			top = 51;
+		Card card = null;
+		if (size == 0) {
+			return card;
 		}
-		Card card = cards.get(top);
-		top--;
+		if (top < 0) {
+			resetTop();
+			top = size - 1;
+		}
+		if (top >= 0) {
+			card = cards.get(top);
+			top--;
+			size--;
+		}
 		return card;
 	}
 
@@ -63,8 +73,8 @@ class Deck {
 	// reset the top card
 	public void shuffle() {
 		resetTop();
-		//Shuffler.perfectShuffle(cards);
-		//Shuffler.selectionShuffle(cards);
+		// Shuffler.perfectShuffle(cards);
+		// Shuffler.selectionShuffle(cards);
 		Collections.shuffle(cards);
 
 	}
@@ -83,20 +93,22 @@ class Deck {
 	}
 
 	public String toString() {
-		String rtn = "";
-	
-		rtn += "size = " + size + "\nUndealt cards: \n";
-
-		for (int k = size - 1; k >= 0; k--) {
-			
-			if (k > size) {
-				rtn = rtn + cards.get(k) + ", ";
-			}
-			
+		String output = "size = " + size + "\nUndealt cards: \n";
+		for (int i = size - 1; i >= 0; i--) {
+			if (i > 0) {
+				output += cards.get(i) + ", ";
+			} else
+				output += cards.get(i) + "\n";
 		}
+		output += "\nDealt cards: \n";
+		for (int k = cards.size() - 1; k >= size; k--) {
+			if (k > size) {
+				output += cards.get(k) + ", ";
+			} else
+				output += cards.get(k) + "\n";
 
-		rtn = rtn + "\n";
-		return rtn;
+		}
+		return output;
 	}
 
 }

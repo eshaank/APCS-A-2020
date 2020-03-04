@@ -97,11 +97,13 @@ public class Shuffler {
 	 */
 	public static void selectionShuffle(int[] values) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 3 *** */
-		for (int k = values.length - 1; k > 0; k--) {
-			int pos = (int) (Math.random() * (k + 1)); // range 0 to k, inclusive
-			int temp = values[pos];
-			values[pos] = values[k];
-			values[k] = temp;
+		int rand = (int) (Math.random()*values.length);
+		int temp = 0;
+		for (int i = values.length-1;i>0;i--) {
+			temp = values[i];
+			values[i]=values[rand];
+			values[rand] = temp;
+			rand = (int) (Math.random()*values.length);
 		}
 	}
 }
