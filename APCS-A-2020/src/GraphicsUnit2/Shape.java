@@ -10,11 +10,7 @@ package GraphicsUnit2;
 
 import java.awt.Color;
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
+import java.awt.Polygon;
 
 public class Shape {
 	// instance variables
@@ -47,7 +43,7 @@ public class Shape {
 	public void draw(Graphics window) {
 		window.setColor(color);
 		window.fillRect(xPos, yPos, width, height);
-
+		
 		// draw whatever you want
 		// ^
 		// [ :: ]
@@ -64,17 +60,9 @@ public class Shape {
 	}
 
 	public void moveAndDraw(Graphics window) {
-		BufferedImage image = null;
-		try {
-			image = ImageIO.read(new File("src/GraphicsUnit2/raymond.jpg"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		// not needed yet
-		
-		
-		window.drawImage(image, xPos, yPos, null);
+		window.setColor(color);
+		window.fillRect(xPos, yPos, width, height);
 		xPos += xSpeed;
 		yPos += ySpeed;
 	}
@@ -83,31 +71,25 @@ public class Shape {
 	public int getX() {
 		return xPos;
 	}
-
 	public int getY() {
 		return yPos;
 	}
-
 	public void setX(int x) {
 		xPos = x;
 	}
-
 	public void setY(int y) {
 		yPos = y;
 	}
-
+	
 	public int getXSpeed() {
 		return xSpeed;
 	}
-
 	public int getYSpeed() {
 		return ySpeed;
 	}
-
 	public void setXSpeed(int x) {
 		xSpeed = x;
 	}
-
 	public void setYSpeed(int y) {
 		ySpeed = y;
 	}
