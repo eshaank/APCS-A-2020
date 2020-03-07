@@ -8,86 +8,108 @@ import static java.lang.System.*;
 
 class Rational implements Comparable<Rational> {
 	// add two instance variables
-	private int numerator;
-	private int denominator;
-	// write two constructors
+	private int num, den;
 
+	// write two constructors
 	public Rational() {
-		numerator = 1;
-		denominator = 2;
+		setNumerator(1);
+		setDenominator(1);
 	}
 
+	public Rational(int num1, int den1) {
+		setNumerator(num1);
+		setDenominator(den1);
+	}
 
-	
+	// write a setRational method
+	public void setRational(int num1, int den1) {
+		setNumerator(num1);
+		setDenominator(den1);
+		reduce();
+	}
 
-	public Rational(int i, int j) {
-		
+	// write a set method for numerator and denominator
+	public void setNumerator(int num1) {
+		num = num1;
+	}
+
+	public void setDenominator(int den1) {
+		den = den1;
 	}
 
 	public void add(Rational other) {
 		// num1/den1 + num2/den2
 		// new numerator = (num1 * den2 + num2 * den1)
 		// new denominator = (den1 * den2)
-
+		num = (num * other.den + other.num * den);
+		den = (den * other.den);
 		reduce();
 	}
 
 	private void reduce() {
 
+		int gcd = gcd(num, den);
+		num /= gcd;
+		den /= gcd;
+
 	}
 
 	private int gcd(int numOne, int numTwo) {
-		int min = Math.min(numOne, numTwo);
-		for (int x = min; x > 1; x--) {
-			if(numOne%x == 0 && numTwo%x == 0) {
-				return x;
+		int gcd = 1;
+		int smaller = numOne;
+		if (numOne > numTwo) {
+			smaller = numTwo;
+		}
+		for (int i = 1; i <= smaller; i++) {
+			if (numOne % i == 0 && numTwo % i == 0) {
+				gcd = i;
 			}
-			return 1;
 		}
 
-		return 1;
+		return gcd;
 	}
 
 	public Object clone() {
-		return "";
+		return this;
 	}
 
 	// ACCESSORS
 
 	// write get methods for numerator and denominator
-	public int getDenom() {
-		return denominator;
+	public int getNumerator() {
+		return num;
 	}
-	public int getNumer() {
-		return numerator;
+
+	public int getDenominator() {
+		return den;
 	}
 
 	public boolean equals(Object obj) {
+
+		if (obj instanceof Rational) {
+			Rational compare = (Rational) obj;
+			return compare.getDenominator() == den && compare.getNumerator() == num;
+		}
 
 		return false;
 	}
 
 	public int compareTo(Rational other) {
 
+		if (equals(other)) {
+			return 0;
+		}
+		double frac = (double) num / den;
+		double otherFrac = (double) other.num / other.den;
+		if ((double) otherFrac < (double) frac) {
+			return 1;
+		}
 		return -1;
-	}
-
-	// write a setRational method
-	public void setRational(int num1, int num2) {
-
-	}
-	
-	// write a set method for numerator and denominator
-	public void setDenom(int d) {
-		denominator = d;
-	}
-	public void setNumer(int n) {
-		numerator = n;
 	}
 
 	// write toString() method
 	public String toString() {
-		return "";
+		return num + "/" + den;
 	}
 
 }
