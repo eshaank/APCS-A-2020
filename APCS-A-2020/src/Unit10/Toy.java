@@ -11,8 +11,8 @@ public class Toy {
 	private int count;
 
 	public Toy() {
-		name = "buzz";
-		count = 1;
+		name = "";
+		count = 0;
 	}
 
 	public Toy(String nm) {
@@ -20,7 +20,6 @@ public class Toy {
 	}
 
 	public int getCount() {
-		
 		return count;
 	}
 
@@ -37,6 +36,6 @@ public class Toy {
 	}
 
 	public String toString() {
-		return "";
+		return getName() + " " + getCount();
 	}
 }
