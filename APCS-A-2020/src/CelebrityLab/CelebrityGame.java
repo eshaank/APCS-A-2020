@@ -47,19 +47,17 @@ public class CelebrityGame {
 	 */
 	public boolean processGuess(String guess) {
 		if (guess.trim().equalsIgnoreCase(gameCelebrity.getAnswer())) {
-			
+
 			celebGameList.remove(gameCelebrity);
-			
+
 			if (celebGameList.size() > 0) {
 				gameCelebrity = celebGameList.get(0);
-			} 
-			else {
+			} else {
 				gameCelebrity = new Celebrity("", "");
 			}
 
 			return true;
-		} 
-		else {
+		} else {
 			return false;
 		}
 	}
@@ -71,15 +69,8 @@ public class CelebrityGame {
 	 */
 	public void play() {
 		if (celebGameList != null && celebGameList.size() > 0) {
-
-			gameCelebrity = celebGameList.get(0);
+			this.gameCelebrity = celebGameList.get(0);
 			gameWindow.replaceScreen("GAME");
-
-		} else {
-
-			gameWindow = new CelebrityFrame(this);
-			gameWindow.replaceScreen("START");
-
 		}
 	}
 
@@ -91,7 +82,7 @@ public class CelebrityGame {
 	 * @param type  What type of celebrity
 	 */
 	public void addCelebrity(String name, String guess, String type) {
-		if (validateCelebrity(name) && validateClue(guess, "")) {
+		if (validateCelebrity(name) && validateClue(guess, type)) {
 			celebGameList.add(new Celebrity(name, guess));
 		}
 	}
@@ -141,7 +132,11 @@ public class CelebrityGame {
 	 * @return The String clue from the current celebrity.
 	 */
 	public String sendClue() {
-		return gameCelebrity.getClue();
+		if (celebGameList.size() != 0) {
+			return celebGameList.get(0).getClue();
+		} else {
+			return "";
+		}
 	}
 
 	/**
@@ -150,6 +145,6 @@ public class CelebrityGame {
 	 * @return The String answer from the current celebrity.
 	 */
 	public String sendAnswer() {
-		return gameCelebrity.getAnswer();
+		return celebGameList.get(0).getAnswer();
 	}
 }

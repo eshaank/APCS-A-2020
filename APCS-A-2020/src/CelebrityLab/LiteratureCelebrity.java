@@ -31,7 +31,7 @@ public class LiteratureCelebrity extends Celebrity
 	 */
 	private void processClues()
 	{
-		String [] clues = super.getClue().split(",");
+		String [] clues = super.getClue().split(", ");
 		clueList = new ArrayList<String>();
 		for (String currentClue : clues)
 		{
