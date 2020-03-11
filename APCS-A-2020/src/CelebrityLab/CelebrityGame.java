@@ -46,20 +46,19 @@ public class CelebrityGame {
 	 * @return Whether it matches regardless of case or extraneous external spaces.
 	 */
 	public boolean processGuess(String guess) {
+		boolean matches = false;
+		/*
+		 * Why use the .trim() method on the supplied String parameter? What would need
+		 * to be done to support a score?
+		 */
 		if (guess.trim().equalsIgnoreCase(gameCelebrity.getAnswer())) {
-
-			celebGameList.remove(gameCelebrity);
-
+			matches = true;
+			celebGameList.remove(0);
 			if (celebGameList.size() > 0) {
 				gameCelebrity = celebGameList.get(0);
-			} else {
-				gameCelebrity = new Celebrity("", "");
 			}
-
-			return true;
-		} else {
-			return false;
 		}
+		return matches;
 	}
 
 	/**
@@ -82,9 +81,23 @@ public class CelebrityGame {
 	 * @param type  What type of celebrity
 	 */
 	public void addCelebrity(String name, String guess, String type) {
+		Celebrity currentCelebrity;
 		if (validateCelebrity(name) && validateClue(guess, type)) {
-			celebGameList.add(new Celebrity(name, guess));
+			
+			if (type.equals("Literature")) {
+				currentCelebrity = new LiteratureCelebrity(name, guess);
+			} else if (type.equals("Tech")) {
+				currentCelebrity = new TechCelebrity(name, guess);
+			} else {
+				currentCelebrity = new Celebrity(name, guess);
+			}
+			this.celebGameList.add(currentCelebrity);
 		}
+
+		/*
+		 * How would you add other subclasses to this CelebrityGame?
+		 */
+
 	}
 
 	/**
