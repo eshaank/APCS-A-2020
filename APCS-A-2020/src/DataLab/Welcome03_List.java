@@ -10,9 +10,9 @@ import java.util.Scanner;
 public class Welcome03_List {
 	public static void main(String[] args) {
 		DataSource ds = DataSource.connect("http://weather.gov/xml/current_obs/index.xml").load();
-		WeatherStation[] allstns = ds.fetchArray(WeatherStation.class, "station/station_name", "station/station_id",
+		ArrayList<WeatherStation> allstns = ds.fetchList(WeatherStation.class, "station/station_name", "station/station_id",
 				"station/state", "station/latitude", "station/longitude");
-		System.out.println("Total stations: " + allstns.length);
+		System.out.println("Total stations: " + allstns.size());
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Enter a state abbreviation: ");
@@ -23,5 +23,13 @@ public class Welcome03_List {
 				System.out.println("  " + ws.getId() + ": " + ws.getName());
 			}
 		}
+		
+		int lowest = 0;
+		for (int i = 0; i < allstns.size(); i++) {
+			if (allstns.get(i).getLat() < allstns.get(lowest).getLat()) {
+				lowest = i;
+			}
+		}
+		System.out.println("  " + allstns.get(lowest).getId() + ": " + allstns.get(lowest).getName());
 	}
 }
