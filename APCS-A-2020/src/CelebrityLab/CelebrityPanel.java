@@ -1,4 +1,5 @@
 package CelebrityLab;
+
 import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.awt.Color;
@@ -11,8 +12,7 @@ import java.awt.event.ActionEvent;
  * @author cody.henrichsen
  * @version 2.9 18/09/2018 Adjusted the listener functionality.
  */
-public class CelebrityPanel extends JPanel
-{
+public class CelebrityPanel extends JPanel {
 
 	/**
 	 * The button pressed when making a guess.
@@ -65,8 +65,8 @@ public class CelebrityPanel extends JPanel
 	private JTextField guessField;
 
 	/**
-	 * Layout manager for the panel. Uses constraints between components to
-	 * align or spring from edges.
+	 * Layout manager for the panel. Uses constraints between components to align or
+	 * spring from edges.
 	 */
 	private SpringLayout panelLayout;
 
@@ -93,12 +93,10 @@ public class CelebrityPanel extends JPanel
 	/**
 	 * Builds the CelebrityPanel and initializes all instance variables.
 	 * 
-	 * @param controller
-	 *            Reference to the Game passed when the CelebrityPanel is
-	 *            instantiated in the Frame.
+	 * @param controller Reference to the Game passed when the CelebrityPanel is
+	 *                   instantiated in the Frame.
 	 */
-	public CelebrityPanel(CelebrityGame controller)
-	{
+	public CelebrityPanel(CelebrityGame controller) {
 		super();
 		this.controller = controller;
 		this.panelLayout = new SpringLayout();
@@ -124,8 +122,7 @@ public class CelebrityPanel extends JPanel
 	 * Helper method to add all components to the panel and adjust GUI settings
 	 * including scroll bars, and line wrap.
 	 */
-	private void setupPanel()
-	{
+	private void setupPanel() {
 		this.setLayout(panelLayout);
 		this.add(guessLabel);
 		this.add(cluePane);
@@ -134,10 +131,10 @@ public class CelebrityPanel extends JPanel
 		this.add(resetButton);
 		this.add(dynamicTimerLabel);
 		this.add(staticTimerLabel);
-		
-		//Changes the font to be larger than default
-		staticTimerLabel.setFont(new Font("Helvetica", Font.BOLD,20));
-		dynamicTimerLabel.setFont(new Font("Helvetica", Font.BOLD,20));
+
+		// Changes the font to be larger than default
+		staticTimerLabel.setFont(new Font("Helvetica", Font.BOLD, 20));
+		dynamicTimerLabel.setFont(new Font("Helvetica", Font.BOLD, 20));
 
 		// These lines allow vertical scrolling but not horizontal.
 		cluePane.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -153,11 +150,10 @@ public class CelebrityPanel extends JPanel
 	}
 
 	/**
-	 * Using a helper method to hold all the constraints for the GUI components
-	 * in the panel
+	 * Using a helper method to hold all the constraints for the GUI components in
+	 * the panel
 	 */
-	private void setupLayout()
-	{
+	private void setupLayout() {
 		panelLayout.putConstraint(SpringLayout.NORTH, cluePane, 15, SpringLayout.NORTH, this);
 		panelLayout.putConstraint(SpringLayout.WEST, cluePane, 15, SpringLayout.WEST, this);
 		panelLayout.putConstraint(SpringLayout.SOUTH, cluePane, -100, SpringLayout.SOUTH, this);
@@ -183,49 +179,40 @@ public class CelebrityPanel extends JPanel
 	/*
 	 * Attaches listeners to the GUI components of the program
 	 */
-	private void setupListeners()
-	{
+	private void setupListeners() {
 
 		/**
-		 * Attaches a listener to the resetButton and uses it to call the reset
-		 * method in the game.
+		 * Attaches a listener to the resetButton and uses it to call the reset method
+		 * in the game.
 		 */
-		resetButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent mouseClick)
-			{
+		resetButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent mouseClick) {
 				controller.play();
 			}
 		});
 
 		/**
-		 * Attaches a listener to the guessButton and uses it to call the
-		 * updateScreen method in the panel.
+		 * Attaches a listener to the guessButton and uses it to call the updateScreen
+		 * method in the panel.
 		 */
-		guessButton.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent mouseClick)
-			{
+		guessButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent mouseClick) {
 				updateScreen();
 			}
 		});
 
 		/**
-		 * Attaches a listener to the guessField for enter key press and uses it
-		 * to call the updateScreen method in the panel.
+		 * Attaches a listener to the guessField for enter key press and uses it to call
+		 * the updateScreen method in the panel.
 		 */
-		guessField.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent enterPress)
-			{
+		guessField.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent enterPress) {
 				updateScreen();
 			}
 		});
 
-		countdownTimer.addActionListener(new ActionListener()
-		{
-			public void actionPerformed(ActionEvent timerFire)
-			{
+		countdownTimer.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent timerFire) {
 				timerFires();
 			}
 		});
@@ -234,31 +221,25 @@ public class CelebrityPanel extends JPanel
 	}
 
 	/**
-	 * Helper method for when the ActionListener attached to the timer fires.
-	 * Sets the text of the label to match the remaining time and a message at
-	 * the end.
+	 * Helper method for when the ActionListener attached to the timer fires. Sets
+	 * the text of the label to match the remaining time and a message at the end.
 	 */
-	private void timerFires()
-	{
+	private void timerFires() {
 		seconds--;
-		
-		if (seconds <= 10)
-		{
-			dynamicTimerLabel.setFont(new Font("Helvetica", Font.BOLD,20));
+
+		if (seconds <= 10) {
+			dynamicTimerLabel.setFont(new Font("Helvetica", Font.BOLD, 20));
 			dynamicTimerLabel.setForeground(Color.RED);
 		}
-		
-		if (seconds < 0)
-		{
+
+		if (seconds < 0) {
 			staticTimerLabel.setText("Times up!");
 			dynamicTimerLabel.setText("00");
 			seconds = 60;
 			countdownTimer.stop();
 			guessButton.setEnabled(false);
 			guessField.setEnabled(false);
-		}
-		else
-		{
+		} else {
 			dynamicTimerLabel.setText("" + seconds);
 		}
 
@@ -267,11 +248,9 @@ public class CelebrityPanel extends JPanel
 	/**
 	 * Method to add a clue to the screen from the game instance
 	 * 
-	 * @param clue
-	 *            The clue to add to the screen.
+	 * @param clue The clue to add to the screen.
 	 */
-	public void addClue(String clue)
-	{
+	public void addClue(String clue) {
 		clueArea.setText("The clue is: " + clue);
 		seconds = 60;
 		dynamicTimerLabel.setForeground(Color.BLACK);
@@ -282,28 +261,23 @@ public class CelebrityPanel extends JPanel
 	}
 
 	/**
-	 * Refactored method to allow both button and enter press in the guessField
-	 * to provide the same functionality.
+	 * Refactored method to allow both button and enter press in the guessField to
+	 * provide the same functionality.
 	 */
-	private void updateScreen()
-	{
+	private void updateScreen() {
 		String currentGuess = guessField.getText();
 		clueArea.append("\nYou guessed: " + currentGuess + "\n");
 
-		if (controller.processGuess(currentGuess))
-		{
+		if (controller.processGuess(currentGuess)) {
 			clueArea.append(success + controller.sendClue());
 			clueArea.setBackground(Color.CYAN);
-		}
-		else
-		{
+		} else {
 			clueArea.setBackground(Color.WHITE);
 			clueArea.append(tryAgain);
 			clueArea.append(controller.sendClue());
 		}
 
-		if (controller.getCelebrityGameSize() == 0)
-		{
+		if (controller.getCelebrityGameSize() == 0) {
 			clueArea.append("\nNo more celebrities to guess.");
 			guessButton.setEnabled(false);
 			guessField.setEnabled(false);

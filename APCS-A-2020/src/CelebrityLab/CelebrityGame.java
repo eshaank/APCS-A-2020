@@ -83,7 +83,6 @@ public class CelebrityGame {
 	public void addCelebrity(String name, String guess, String type) {
 		Celebrity currentCelebrity;
 		if (validateCelebrity(name) && validateClue(guess, type)) {
-			
 			if (type.equals("Literature")) {
 				currentCelebrity = new LiteratureCelebrity(name, guess);
 			} else if (type.equals("Tech")) {
@@ -91,9 +90,8 @@ public class CelebrityGame {
 			} else {
 				currentCelebrity = new Celebrity(name, guess);
 			}
-			this.celebGameList.add(currentCelebrity);
+			celebGameList.add(currentCelebrity);
 		}
-
 		/*
 		 * How would you add other subclasses to this CelebrityGame?
 		 */
@@ -107,11 +105,11 @@ public class CelebrityGame {
 	 * @return If the supplied Celebrity is valid
 	 */
 	public boolean validateCelebrity(String name) {
-		if (name.length() >= 4) {
-			return true;
-		} else {
-			return false;
+		boolean valid = false;
+		if (name.trim().length() >= 4) {
+			valid = true;
 		}
+		return valid;
 	}
 
 	/**
@@ -123,11 +121,27 @@ public class CelebrityGame {
 	 * @return If the clue is valid.
 	 */
 	public boolean validateClue(String clue, String type) {
-		if (clue.length() >= 10) {
-			return true;
-		} else {
-			return false;
+		boolean valid = false;
+		if (clue.trim().length() >= 10) {
+			valid = true;
 		}
+		if (type.equalsIgnoreCase("literature")) {
+			String[] temp = clue.split(",");
+			if (temp.length > 1) {
+				valid = true;
+			} else {
+				valid = false;
+			}
+		}
+		if (type.equalsIgnoreCase("tech")) {
+			String[] temp1 = clue.split(",");
+			if (temp1.length > 1) {
+				valid = true;
+			} else {
+				valid = false;
+			}
+		}
+		return valid;
 	}
 
 	/**
