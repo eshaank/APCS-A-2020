@@ -118,10 +118,10 @@ public class StartPanel extends JPanel {
 		this.typeGroup = new ButtonGroup();
 		this.celebrityRadio = new JRadioButton("Celebrity");
 		this.literatureRadio = new JRadioButton("Literature Celebrity");
-		this.techRadio = new JRadioButton("Tech Celebrity (celebrities related to technology i.e Elon Musk)");
+		this.techRadio = new JRadioButton("tech Celebrity");
 		this.celebrityClue = "Enter the clue for the celebrity";
 		this.literatureClue = "Enter the clues for the literature celeb separated by commas";
-		this.techClue = "Enter the clues for the techy celeb separated by commas";
+		this.techClue = "Enter the clues for the tech celeb separated by commas";
 		this.clueLabel = new JLabel(celebrityClue);
 
 		this.answerField = new JTextField("Type celebrity here (4 letters minimum)");
@@ -260,6 +260,7 @@ public class StartPanel extends JPanel {
 		 */
 		literatureRadio.addActionListener(select -> clueLabel.setText(literatureClue));
 		celebrityRadio.addActionListener(select -> clueLabel.setText(celebrityClue));
+		techRadio.addActionListener(select -> clueLabel.setText(techClue));
 
 	}
 
@@ -274,6 +275,8 @@ public class StartPanel extends JPanel {
 		String type = "Celebrity";
 		if (literatureRadio.isSelected()) {
 			type = "Literature";
+		} else if (techRadio.isSelected()) {
+			type = "tech";
 		}
 		String answer = answerField.getText().trim();
 		String clue = clueField.getText().trim();

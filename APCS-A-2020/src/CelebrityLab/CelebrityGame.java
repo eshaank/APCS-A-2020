@@ -14,7 +14,7 @@ public class CelebrityGame {
 	 */
 	private Celebrity gameCelebrity;
 	/**
-	 * /** The GUI frame for the Celebrity game.
+	 * The GUI frame for the Celebrity game.
 	 */
 	private CelebrityFrame gameWindow;
 	/**
@@ -46,19 +46,15 @@ public class CelebrityGame {
 	 * @return Whether it matches regardless of case or extraneous external spaces.
 	 */
 	public boolean processGuess(String guess) {
-		boolean matches = false;
-		/*
-		 * Why use the .trim() method on the supplied String parameter? What would need
-		 * to be done to support a score?
-		 */
-		if (guess.trim().equalsIgnoreCase(gameCelebrity.getAnswer())) {
-			matches = true;
+		boolean valid = false;
+		if (guess.trim().equalsIgnoreCase(celebGameList.get(0).getAnswer().trim())) {
+			valid = true;
 			celebGameList.remove(0);
-			if (celebGameList.size() > 0) {
-				gameCelebrity = celebGameList.get(0);
-			}
 		}
-		return matches;
+		if (celebGameList.size() == 0) {
+			gameCelebrity = new Celebrity("", "");
+		}
+		return valid;
 	}
 
 	/**
@@ -85,17 +81,13 @@ public class CelebrityGame {
 		if (validateCelebrity(name) && validateClue(guess, type)) {
 			if (type.equals("Literature")) {
 				currentCelebrity = new LiteratureCelebrity(name, guess);
-			} else if (type.equals("Tech")) {
+			} else if (type.equals("Poetry")) {
 				currentCelebrity = new TechCelebrity(name, guess);
 			} else {
 				currentCelebrity = new Celebrity(name, guess);
 			}
 			celebGameList.add(currentCelebrity);
 		}
-		/*
-		 * How would you add other subclasses to this CelebrityGame?
-		 */
-
 	}
 
 	/**
@@ -133,7 +125,7 @@ public class CelebrityGame {
 				valid = false;
 			}
 		}
-		if (type.equalsIgnoreCase("tech")) {
+		if (type.equalsIgnoreCase("poetry")) {
 			String[] temp1 = clue.split(",");
 			if (temp1.length > 1) {
 				valid = true;
@@ -159,11 +151,9 @@ public class CelebrityGame {
 	 * @return The String clue from the current celebrity.
 	 */
 	public String sendClue() {
-		if (celebGameList.size() != 0) {
+		if (celebGameList.size() != 0)
 			return celebGameList.get(0).getClue();
-		} else {
-			return "";
-		}
+		return "";
 	}
 
 	/**
