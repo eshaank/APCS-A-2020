@@ -1,5 +1,5 @@
 package DataLab;
-import core.data.*;
+import core.data.DataSource;
 
 public class Welcome01 {
    public static void main(String[] args) {
