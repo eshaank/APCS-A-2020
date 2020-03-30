@@ -12,9 +12,9 @@ import static java.lang.System.*;
 
 public class NumberShifterRunner {
 	public static void main(String args[]) throws IOException {
-		int[] arr1 = NumberShifter.makeLucky7Array(10);
-		System.out.println(Arrays.toString(arr1));
-		NumberShifter.shiftEm(arr1);
-		System.out.println(Arrays.toString(arr1));
+		int[] test1 = NumberShifter.makeLucky7Array(15);
+		System.out.println(Arrays.toString(test1));
+		NumberShifter.shiftEm(test1);
+		System.out.println(Arrays.toString(test1));
 	}
 }
