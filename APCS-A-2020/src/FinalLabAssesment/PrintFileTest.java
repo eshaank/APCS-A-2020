@@ -6,19 +6,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
-public class Main {
-	static JFrame frame;
-	static JPanel panel;
-	static JButton countryStats;
-	static JButton stateStats;
+public class PrintFileTest {
 	public static void main(String[] args) {
-		userInterface();
-		//readFromFile();
+		String state = JOptionPane.showInputDialog("Enter a state");
+		COVID19 test = new COVID19(state);
+		System.out.println(test);
 	}
 
 	public static void readFromFile() {
@@ -31,7 +25,7 @@ public class Main {
 		ArrayList<String> cases = new ArrayList<>();
 
 		try {
-			System.out.println("COVID-19 Cases by State (" + date + ")" );
+			System.out.println("COVID-19 Cases by State (" + date + ")");
 			br = new BufferedReader(new FileReader(csvFile));
 			while ((line = br.readLine()) != null) {
 
@@ -77,23 +71,5 @@ public class Main {
 			}
 		}
 		return result;
-	}
-	public static void userInterface() {
-		frame = new JFrame();
-		panel = new JPanel();
-		countryStats = new JButton();
-		stateStats = new JButton();
-		
-		countryStats.setText("View Country Stats");
-		stateStats.setText("View State Stats");
-		
-		frame.show();
-		frame.add(panel);
-		panel.add(countryStats);
-		panel.add(stateStats);
-		frame.pack();
-		
-		countryStats.addActionListener((e) -> readFromFile());
-		
 	}
 }
