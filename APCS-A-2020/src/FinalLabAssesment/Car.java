@@ -46,7 +46,7 @@ public class Car {
 		sum+= mpg.get(i);
 		}
 		int avg =  sum/mpg.size();
-		return (int) avg;
+		return avg;
 	}
 	
 	public String toString() {
