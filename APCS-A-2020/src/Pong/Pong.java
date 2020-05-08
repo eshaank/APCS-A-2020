@@ -23,18 +23,19 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 	private Block bottomWall;
 	private boolean[] keys;
 	private BufferedImage back;
-	private int player1, player2;
-	
+	private int blueScore;
+	private int yellowScore;
+
 	public Pong() {
 		// set up all variables related to the game
-		ball = new BlinkyBall(300, 300, 20, 20, Color.pink, 2, 2);
-		leftPaddle = new Paddle(100, 100, 10, 50, Color.MAGENTA, 10);
-		rightPaddle = new Paddle(700, 450, 10, 50, Color.BLUE, 10);
+		ball = new SpeedUpBall(300, 300, 20, 20, Color.pink, 2, 2);
+		leftPaddle = new Paddle(100, 100, 10, 50, Color.blue, 10);
+		rightPaddle = new Paddle(700, 450, 10, 50, Color.yellow, 10);
 		topWall = new Block(0, 0, 800, 10, Color.black);
 		bottomWall = new Block(0, 540, 800, 10, Color.black);
 		keys = new boolean[4];
-		player1 = 0;
-		player2 = 0;
+		blueScore = 0;
+		yellowScore = 0;
 
 		setBackground(Color.WHITE);
 		setVisible(true);
@@ -66,24 +67,23 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 		ball.moveAndDraw(graphToBack);
 		leftPaddle.draw(graphToBack);
 		rightPaddle.draw(graphToBack);
-		window.drawString("Player 1 Score: " + player1, 500, 20);
-		window.drawString("Player 2 Score: " + player2, 500, 30);
+		window.drawString("Blue Score: " + blueScore, 500, 20);
+		window.drawString("Yellow Score: " + yellowScore, 500, 30);
 
 		// see if ball hits left wall or right wall
 		if (ball.getX() <= 10) {
 			graphToBack.setColor(Color.white);
-			player2++;
+			yellowScore++;
 			ball.draw(graphToBack, Color.white);
 			ball.setXSpeed(0);
 			ball.setYSpeed(0);
 			ball.setPos(300, 300);
 			ball.setXSpeed(-2);
 			ball.setYSpeed(2);
-			window.drawString("Player 2 Score: " + player2, 500, 20);
 		}
 
 		if (ball.getX() >= getWidth() - ball.getWidth() - 10) {
-			player1++;
+			blueScore++;
 			ball.draw(graphToBack, Color.white);
 			graphToBack.clearRect(500, 20, 20, 10);
 			ball.setXSpeed(0);
@@ -91,7 +91,6 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 			ball.setPos(300, 300);
 			ball.setXSpeed(2);
 			ball.setYSpeed(2);
-			window.drawString("Player 1 Score: " + player1, 500, 20);
 
 		}
 		// see if the ball hits the top or bottom wall

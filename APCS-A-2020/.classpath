@@ -5,7 +5,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="D:/Users/Eshaan/Documents/GitHub/APCS-A-2020/sinbad.jar"/>
+	<classpathentry excluding="AbstractShape.java|FancySnowFlake.java|GraphicsRunner.java|SnowMan.java|WinterScene.java|WinterScenePanel.java" kind="src" path="src"/>
+	<classpathentry kind="lib" path="D:/Program Files/GitHub/APCS-A-2020/sinbad.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

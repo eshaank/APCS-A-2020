@@ -22,20 +22,20 @@ public class Ball extends Block implements Collidable {
 
 	public Ball(int x, int y) {
 		super(x, y);
-		xSpeed = 3;
-		ySpeed = 1;
+		xSpeed = 4;
+		ySpeed = 2;
 	}
 
 	public Ball(int x, int y, int w, int h) {
 		super(x, y, w, h);
-		xSpeed = 3;
-		ySpeed = 1;
+		xSpeed = 4;
+		ySpeed = 2;
 	}
 
 	public Ball(int x, int y, int w, int h, Color c) {
 		super(x, y, w, h, c);
-		xSpeed = 3;
-		ySpeed = 1;
+		xSpeed = 4;
+		ySpeed = 2;
 	}
 
 	public Ball(int x, int y, int w, int h, Color c, int xSpd, int ySpd) {
@@ -66,8 +66,8 @@ public class Ball extends Block implements Collidable {
 	}
 
 	public boolean equals(Object obj) {
-		Ball test = (Ball) obj;
-		if (super.equals(obj) && this.getXSpeed() == test.getXSpeed() && this.getYSpeed() == test.getYSpeed()) {
+		Ball testBall = (Ball) obj;
+		if (super.equals(obj) && this.getXSpeed() == testBall.getXSpeed() && this.getYSpeed() == testBall.getYSpeed()) {
 			return true;
 		}
 		return false;
@@ -104,7 +104,7 @@ public class Ball extends Block implements Collidable {
 	@Override
 	public boolean didCollideRight(Object obj) {
 		Block test = (Block) obj;
-		if ((this.getX() + this.getWidth() - this.getXSpeed() >= test.getX())
+		if ((this.getX() + this.getWidth() + this.getXSpeed() >= test.getX())
 				&& ((this.getY() >= test.getY() && this.getY() <= test.getY() + test.getHeight())
 						|| (this.getY() + this.getHeight() >= test.getY()
 								&& this.getY() + this.getHeight() < test.getY() + test.getHeight()))) {
