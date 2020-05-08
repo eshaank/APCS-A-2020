@@ -6,6 +6,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry excluding="AbstractShape.java|FancySnowFlake.java|GraphicsRunner.java|SnowMan.java|WinterScene.java|WinterScenePanel.java" kind="src" path="src"/>
-	<classpathentry kind="lib" path="D:/Program Files/GitHub/APCS-A-2020/sinbad.jar"/>
+	<classpathentry kind="lib" path="/Users/eshaankansagara/Library/Mobile Documents/com~apple~CloudDocs/eclipse-workspace/sinbad.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
