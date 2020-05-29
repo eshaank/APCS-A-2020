@@ -165,8 +165,8 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 				repaint();
 				for (Alien a : horde.getAliens()) {
 					if (ship.hitByAlien(a)) {
-						JOptionPane.showMessageDialog(null, "You lose");
 						ship.setImage("pu.jpg");
+						JOptionPane.showMessageDialog(null, "You lose");
 						repaint();
 						gameOver = true;
 					}
