@@ -24,13 +24,15 @@ public class NewAcctPanel extends Setting {
 		registerPassword = new JPasswordField();
 
 		submitButton = new JButton("Submit");
+		signInButton = new JButton("Sign In");
 
 		panelAccount.add(userLabel);
 		panelAccount.add(registerUser);
 		panelAccount.add(passwordLabel);
 		panelAccount.add(registerPassword);
-		panelAccount.add(message);
+		panelAccount.add(signInButton);
 		panelAccount.add(submitButton);
+		
 
 		userLabel.setText("User Name :");
 		passwordLabel.setText("Password :");
@@ -46,7 +48,7 @@ public class NewAcctPanel extends Setting {
 			
 		}
 		submitButton.addActionListener(e -> CreateAccountPressed());
-
+		signInButton.addActionListener(e -> goToLoginPage());
 		
 	}
 }

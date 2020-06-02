@@ -28,6 +28,7 @@ public class Setting extends JPanel {
 
 	JButton submitButton;
 	JButton logInButton;
+	JButton signInButton;
 
 	static HashMap<String, String> usersMap = new HashMap<>();
 	static boolean succAcct = false;
@@ -41,14 +42,15 @@ public class Setting extends JPanel {
 		if (usersMap.containsKey(username)) {
 			JOptionPane.showMessageDialog(null, "User already exists", "ERROR", JOptionPane.ERROR_MESSAGE);
 		} else {
-			usersMap.put(username, password);
-			JOptionPane.showMessageDialog(null, "Registration Successful", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
-			
-			LogInPanel log = new LogInPanel();
-			log.logIn();
-			
+			if (password.length() <= 4) {
+				JOptionPane.showMessageDialog(null, "Password not long enough (must be at least 4)", "ERROR",
+						JOptionPane.ERROR_MESSAGE);
+			} else {
+				usersMap.put(username, password);
+				JOptionPane.showMessageDialog(null, "Registration Successful", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+			}
 		}
-		System.out.println(usersMap);
+		// System.out.println(usersMap);
 	}
 
 	public static void logInPressed() {
@@ -68,6 +70,12 @@ public class Setting extends JPanel {
 		}
 	}
 
+	public static void goToLoginPage() {
+		
+		LogInPanel log = new LogInPanel();
+		log.logIn();
+	}
+
 	static boolean getSuccAcct() {
 		return succAcct;
 	}
@@ -75,6 +83,5 @@ public class Setting extends JPanel {
 	public static void setSuccAcct(boolean val) {
 		succAcct = val;
 	}
-	
 
 }

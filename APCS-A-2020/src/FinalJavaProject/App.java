@@ -9,14 +9,15 @@ public class App {
 
 	LogInPanel log = new LogInPanel();
 	NewAcctPanel createAcct = new NewAcctPanel();
+	
 
 	public void draw() {
 		if (currentState == CREATEACCT) {
 			createAcct.newAcct();
-		} else if (currentState == LOGIN) {
+		}
+		if (currentState == LOGIN) {
 			log.logIn();
 		}
 	}
 
-	
 }
