@@ -11,19 +11,26 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Setting {
-	JFrame frame;
-	JPanel panel;
+	JFrame frameLog;
+	JPanel panelLogIn;
+
+	JFrame frameAcct;
+	JPanel panelAccount;
+
 	static JTextField registerUser;
 	static JPasswordField registerPassword;
-	
+
 	static JTextField username;
 	static JPasswordField password;
-	
+
 	JLabel userLabel, passwordLabel, message;
 
 	JButton submitButton;
 	JButton logInButton;
+
 	static HashMap<String, String> usersMap = new HashMap<>();
+	static boolean succAcct = false;
+	static boolean succLog = false;
 
 	public static void CreateAccountPressed() {
 		Setting setting = new Setting();
@@ -35,7 +42,11 @@ public class Setting {
 		} else {
 			usersMap.put(username, password);
 			JOptionPane.showMessageDialog(null, "Registration Successful", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
-			
+
+			LogIn_Screen log = new LogIn_Screen();
+			succAcct = true;
+			log.logIn();
+
 		}
 		System.out.println(usersMap);
 	}
@@ -48,13 +59,11 @@ public class Setting {
 			String storedPassword = usersMap.get(user);
 			if (storedPassword.equals(pass)) {
 				JOptionPane.showMessageDialog(null, "Log In Successful", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
-				
-			}
-			else {
+
+			} else {
 				JOptionPane.showMessageDialog(null, "Failed to Log In", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
-		} 
-		else {
+		} else {
 			JOptionPane.showMessageDialog(null, "Failed to Log In", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}

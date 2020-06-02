@@ -14,12 +14,14 @@ import javax.swing.JTextField;
 public class CreateAccount_Screen extends Setting {
 
 	CreateAccount_Screen() {
-		
+
 	}
-	
+
 	public void createAcct() {
-		frame = new JFrame();
-		panel = new JPanel(new GridLayout(3, 1));
+		frameAcct = new JFrame();
+		panelAccount = new JPanel(new GridLayout(3, 1));
+
+		frameAcct.getContentPane().add(panelAccount);
 
 		userLabel = new JLabel();
 		passwordLabel = new JLabel();
@@ -29,23 +31,26 @@ public class CreateAccount_Screen extends Setting {
 		registerPassword = new JPasswordField();
 
 		submitButton = new JButton("Submit");
+		
 
-		panel.add(userLabel);
-		panel.add(registerUser);
-		panel.add(passwordLabel);
-		panel.add(registerPassword);
-		panel.add(message);
-		panel.add(submitButton);
+		panelAccount.add(userLabel);
+		panelAccount.add(registerUser);
+		panelAccount.add(passwordLabel);
+		panelAccount.add(registerPassword);
+		panelAccount.add(message);
+		panelAccount.add(submitButton);
 
 		userLabel.setText("User Name :");
 		passwordLabel.setText("Password :");
 
-		frame.add(panel, BorderLayout.CENTER);
-		frame.setTitle("Create Account");
-		frame.setSize(450, 350);
-		frame.setVisible(true);
+		frameAcct.add(panelAccount, BorderLayout.CENTER);
+		frameAcct.setTitle("Create Account");
+		frameAcct.setSize(450, 350);
+		frameAcct.setVisible(true);
 
 		submitButton.addActionListener(e -> CreateAccountPressed());
+		
+		
 	}
-	
+
 }

@@ -23,8 +23,8 @@ public class LogIn_Screen extends Setting {
 
 	public void logIn() {
 
-		frame = new JFrame();
-		panel = new JPanel(new GridLayout(3, 1));
+		frameLog = new JFrame();
+		panelLogIn = new JPanel(new GridLayout(3, 1));
 
 		userLabel = new JLabel();
 		passwordLabel = new JLabel();
@@ -35,20 +35,20 @@ public class LogIn_Screen extends Setting {
 
 		logInButton = new JButton("Sign In");
 
-		panel.add(userLabel);
-		panel.add(username);
-		panel.add(passwordLabel);
-		panel.add(password);
-		panel.add(message);
-		panel.add(logInButton);
+		panelLogIn.add(userLabel);
+		panelLogIn.add(username);
+		panelLogIn.add(passwordLabel);
+		panelLogIn.add(password);
+		panelLogIn.add(message);
+		panelLogIn.add(logInButton);
 
 		userLabel.setText("User Name :");
 		passwordLabel.setText("Password :");
 
-		frame.add(panel, BorderLayout.CENTER);
-		frame.setTitle("Log In");
-		frame.setSize(400, 300);
-		frame.setVisible(true);
+		frameLog.add(panelLogIn, BorderLayout.CENTER);
+		frameLog.setTitle("Log In");
+		frameLog.setSize(400, 300);
+		
 
 		logInButton.addActionListener(e -> logInPressed());
 		
