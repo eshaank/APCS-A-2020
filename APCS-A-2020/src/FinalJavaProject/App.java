@@ -7,15 +7,15 @@ public class App {
 	
 	public static int currentState = CREATEACCT;
 	
-	LogIn_Screen log = new LogIn_Screen();
-	CreateAccount_Screen createAcct = new CreateAccount_Screen();
+	LogInPanel log = new LogInPanel();
+	NewAcctPanel createAcct = new NewAcctPanel();
 	
 	public void draw() {
+		if(currentState == CREATEACCT) {
+			createAcct.newAcct();
+		}
 		if(currentState == LOGIN) {
 			log.logIn();
-		}
-		if(currentState == CREATEACCT) {
-			createAcct.createAcct();
 		}
 	}
 }

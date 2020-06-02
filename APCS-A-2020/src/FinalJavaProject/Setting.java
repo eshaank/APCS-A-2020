@@ -1,5 +1,6 @@
 package FinalJavaProject;
 
+import java.awt.Dimension;
 import java.util.HashMap;
 
 import javax.swing.JButton;
@@ -10,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class Setting {
+public class Setting extends JPanel {
 	JFrame frameLog;
 	JPanel panelLogIn;
 
@@ -42,9 +43,9 @@ public class Setting {
 		} else {
 			usersMap.put(username, password);
 			JOptionPane.showMessageDialog(null, "Registration Successful", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+			setSuccAcct(true);
 
-			LogIn_Screen log = new LogIn_Screen();
-			succAcct = true;
+			LogInPanel log = new LogInPanel();
 			log.logIn();
 
 		}
@@ -66,5 +67,13 @@ public class Setting {
 		} else {
 			JOptionPane.showMessageDialog(null, "Failed to Log In", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
+	}
+
+	static boolean getSuccAcct() {
+		return succAcct;
+	}
+
+	public static void setSuccAcct(boolean val) {
+		succAcct = val;
 	}
 }

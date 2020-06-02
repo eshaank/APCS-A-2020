@@ -6,22 +6,15 @@ import java.awt.GridLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class CreateAccount_Screen extends Setting {
-
-	CreateAccount_Screen() {
-
-	}
-
-	public void createAcct() {
+public class NewAcctPanel extends Setting {
+	Setting set = new Setting();
+	public void newAcct() {
 		frameAcct = new JFrame();
 		panelAccount = new JPanel(new GridLayout(3, 1));
-
-		frameAcct.getContentPane().add(panelAccount);
 
 		userLabel = new JLabel();
 		passwordLabel = new JLabel();
@@ -31,7 +24,6 @@ public class CreateAccount_Screen extends Setting {
 		registerPassword = new JPasswordField();
 
 		submitButton = new JButton("Submit");
-		
 
 		panelAccount.add(userLabel);
 		panelAccount.add(registerUser);
@@ -45,12 +37,16 @@ public class CreateAccount_Screen extends Setting {
 
 		frameAcct.add(panelAccount, BorderLayout.CENTER);
 		frameAcct.setTitle("Create Account");
-		frameAcct.setSize(450, 350);
+		frameAcct.setSize(400, 300);
 		frameAcct.setVisible(true);
 
+		if(getSuccAcct() == true) {
+			System.out.println("succAcct = true");
+			frameAcct.dispose();
+			
+		}
 		submitButton.addActionListener(e -> CreateAccountPressed());
-		
+
 		
 	}
-
 }
