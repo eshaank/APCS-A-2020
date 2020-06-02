@@ -18,50 +18,52 @@ public class SaveToFiles implements ActionListener {
 	JFrame frame;
 	JPanel panel;
 
-	JButton addTask;
+	JButton addgame;
 	JButton viewList;
-	JButton removeTask;
+	JButton removegame;
 	JButton saveList;
 	JButton loadList;
+	JButton viewGameDetails;
 
-	ArrayList<String> taskList = new ArrayList<String>();
+	ArrayList<String> gameList = new ArrayList<String>();
 
 	public static void main(String[] args) {
 		SaveToFiles saver = new SaveToFiles();
-		saver.taskMaster();
+		saver.gameMaster();
 
 	}
 
 	@SuppressWarnings("deprecation")
-	void taskMaster() {
+	void gameMaster() {
 		frame = new JFrame();
 		panel = new JPanel();
 
-		addTask = new JButton();
+		addgame = new JButton();
 		viewList = new JButton();
-		removeTask = new JButton();
+		removegame = new JButton();
 		saveList = new JButton();
 		loadList = new JButton();
+		viewGameDetails = new JButton();
 
 		frame.setVisible(true);
 		frame.setSize(400, 300);
 		frame.add(panel);
 
-		addTask.setLabel("Add Task");
+		addgame.setLabel("Add game");
 		viewList.setLabel("View List");
-		removeTask.setLabel("Remove Task");
+		removegame.setLabel("Remove game");
 		saveList.setLabel("Save List");
 		loadList.setLabel("Load List");
 
-		panel.add(addTask);
+		panel.add(addgame);
 		panel.add(viewList);
-		panel.add(removeTask);
+		panel.add(removegame);
 		panel.add(saveList);
 		panel.add(loadList);
 
-		addTask.addActionListener(this);
+		addgame.addActionListener(this);
 		viewList.addActionListener(this);
-		removeTask.addActionListener(this);
+		removegame.addActionListener(this);
 		saveList.addActionListener(this);
 		loadList.addActionListener(this);
 
@@ -70,28 +72,28 @@ public class SaveToFiles implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
-		if (e.getSource() == addTask) {
-			String task = JOptionPane.showInputDialog("Enter a task to be saved");
-			taskList.add(task);
+		if (e.getSource() == addgame) {
+			String game = JOptionPane.showInputDialog("Enter a game to be saved");
+			gameList.add(game);
 		}
 
 		String display = "";
-		for (int i = 0; i < taskList.size(); i++) {
-			display += taskList.get(i) + "\n";
+		for (int i = 0; i < gameList.size(); i++) {
+			display += gameList.get(i) + "\n";
 		}
 
 		if (e.getSource() == viewList) {
 			JOptionPane.showMessageDialog(null, display);
 		}
 
-		if (e.getSource() == removeTask) {
-			String remove = JOptionPane.showInputDialog("Enter a task to remove: \n" + display);
-			for (int i = 0; i < taskList.size(); i++) {
-				if (taskList.get(i).equalsIgnoreCase(remove)) {
-					taskList.remove(i);
+		if (e.getSource() == removegame) {
+			String remove = JOptionPane.showInputDialog("Enter a game to remove: \n" + display);
+			for (int i = 0; i < gameList.size(); i++) {
+				if (gameList.get(i).equalsIgnoreCase(remove)) {
+					gameList.remove(i);
 				}
 			}
-			System.out.println(taskList);
+			System.out.println(gameList);
 		}
 		if (e.getSource() == saveList) {
 			try {
