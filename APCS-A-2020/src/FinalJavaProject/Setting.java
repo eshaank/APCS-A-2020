@@ -43,11 +43,10 @@ public class Setting extends JPanel {
 		} else {
 			usersMap.put(username, password);
 			JOptionPane.showMessageDialog(null, "Registration Successful", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
-			setSuccAcct(true);
-
+			
 			LogInPanel log = new LogInPanel();
 			log.logIn();
-
+			
 		}
 		System.out.println(usersMap);
 	}
@@ -76,4 +75,6 @@ public class Setting extends JPanel {
 	public static void setSuccAcct(boolean val) {
 		succAcct = val;
 	}
+	
+
 }
