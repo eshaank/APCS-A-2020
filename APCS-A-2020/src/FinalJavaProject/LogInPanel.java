@@ -2,6 +2,11 @@ package FinalJavaProject;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
+import java.awt.HeadlessException;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,17 +17,22 @@ import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class LogInPanel {
-	
+
 	JFrame frameLog;
 	JPanel panelLogIn;
 
 	static JTextField username;
 	static JPasswordField password;
-	
+
 	JLabel userLabel, passwordLabel, message;
-	
+
 	JButton logInButton;
-	
+
+	static FileWriter fw;
+	static BufferedReader br;
+
+	static String file = "src/FinalJavaProject/UserLogins.txt";
+
 	public void logIn() {
 
 		frameLog = new JFrame();
@@ -52,9 +62,16 @@ public class LogInPanel {
 		frameLog.setSize(400, 300);
 		frameLog.setVisible(true);
 
+		try {
+			userExists(username.getText(), password.getText());
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+
 		logInButton.addActionListener(e -> logInPressed());
 	}
-	
+
 	public static void logInPressed() {
 		String user = username.getText();
 		String pass = password.getText();
@@ -70,5 +87,32 @@ public class LogInPanel {
 		} else {
 			JOptionPane.showMessageDialog(null, "Failed to Log In", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
+
+	}
+
+	public static boolean userExists(String username, String password) throws IOException {
+		// returns true if hashmap has key. If in file, key and value will be added to
+		// hashmap
+
+		String line;
+		br = new BufferedReader(new FileReader(file));
+		while ((line = br.readLine()) != null) {
+
+			String[] parts = line.split(" : ", 2);
+			if (parts.length >= 2) {
+				String key = parts[0];
+				String value = parts[1];
+				NewAcctPanel.usersMap.put(key, value);
+				System.out.println("adding");
+				System.out.println(NewAcctPanel.usersMap);
+			} else {
+				System.out.println(NewAcctPanel.usersMap);
+			}
+
+		}
+
+		br.close();
+
+		return false;
 	}
 }
