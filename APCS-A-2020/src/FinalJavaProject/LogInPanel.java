@@ -16,7 +16,15 @@ import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-public class LogInPanel {
+public class LogInPanel extends Setting {
+
+	public LogInPanel(String game, int highscore, String companyName, String genre, double rating, String platform) {
+		super(game, highscore, companyName, genre, rating, platform);
+	}
+
+	public LogInPanel() {
+		// TODO Auto-generated constructor stub
+	}
 
 	JFrame frameLog;
 	JPanel panelLogIn;
@@ -73,13 +81,16 @@ public class LogInPanel {
 	}
 
 	public static void logInPressed() {
-		String user = username.getText();
-		String pass = password.getText();
+		setUsername(username.getText());
+		setPassword(password.getText());
 
-		if (NewAcctPanel.usersMap.containsKey(user)) {
-			String storedPassword = NewAcctPanel.usersMap.get(user);
-			if (storedPassword.equals(pass)) {
+		if (NewAcctPanel.usersMap.containsKey(getUsername())) {
+			String storedPassword = NewAcctPanel.usersMap.get(getUsername());
+			if (storedPassword.equals(getPassword())) {
 				JOptionPane.showMessageDialog(null, "Log In Successful", "SUCCESS", JOptionPane.PLAIN_MESSAGE);
+
+				SaveToFiles saver = new SaveToFiles();
+				saver.gameLibrary();
 
 			} else {
 				JOptionPane.showMessageDialog(null, "Failed to Log In", "ERROR", JOptionPane.ERROR_MESSAGE);

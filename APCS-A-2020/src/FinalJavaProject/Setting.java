@@ -1,6 +1,8 @@
 package FinalJavaProject;
 
-public class GameProfiles {
+public class Setting {
+	private static String username;
+	private static String password;
 	private String gameName;
 	private int highScore;
 	private String company;
@@ -8,7 +10,10 @@ public class GameProfiles {
 	private double rating;
 	private String platform;
 
-	public GameProfiles(String game, int highscore, String companyName, String genre, double rating, String platform) {
+	public Setting() {
+		
+	}
+	public Setting(String game, int highscore, String companyName, String genre, double rating, String platform) {
 		setGameName(game);
 		setHighScore(highscore);
 		setCompany(companyName);
@@ -65,4 +70,20 @@ public class GameProfiles {
 		return platform;
 	}
 
+	
+	public static String getUsername() {
+		return username;
+	}
+
+	public static void setUsername(String user) {
+		username = user;
+	}
+
+	public static String getPassword() {
+		return password;
+	}
+
+	public static void setPassword(String pass) {
+		password = pass;
+	}
 }

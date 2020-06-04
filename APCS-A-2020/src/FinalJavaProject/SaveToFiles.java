@@ -1,5 +1,6 @@
 package FinalJavaProject;
 
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -14,7 +15,16 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class SaveToFiles implements ActionListener {
+public class SaveToFiles extends Setting implements ActionListener {
+	public SaveToFiles(String game, int highscore, String companyName, String genre, double rating, String platform) {
+		super(game, highscore, companyName, genre, rating, platform);
+		// TODO Auto-generated constructor stub
+	}
+
+	public SaveToFiles() {
+		// TODO Auto-generated constructor stub
+	}
+
 	JFrame frame;
 	JPanel panel;
 
@@ -25,35 +35,30 @@ public class SaveToFiles implements ActionListener {
 	JButton loadList;
 	JButton viewGameDetails;
 
+	boolean printText = false;
+
 	ArrayList<String> gameList = new ArrayList<String>();
 
-	public static void main(String[] args) {
-		SaveToFiles saver = new SaveToFiles();
-		saver.gameMaster();
-
-	}
+//	public static void main(String[] args) {
+//		SaveToFiles test = new SaveToFiles();
+//		test.gameLibrary();
+//	}
 
 	@SuppressWarnings("deprecation")
-	void gameMaster() {
-		frame = new JFrame();
-		panel = new JPanel();
+	public void gameLibrary() {
+		frame = new JFrame("Game Library");
+		panel = new JPanel(new GridLayout(5, 1));
 
-		addgame = new JButton();
-		viewList = new JButton();
-		removegame = new JButton();
-		saveList = new JButton();
-		loadList = new JButton();
+		addgame = new JButton("Add game");
+		viewList = new JButton("View List");
+		removegame = new JButton("Remove game");
+		saveList = new JButton("Save List");
+		loadList = new JButton("Load List");
 		viewGameDetails = new JButton();
 
 		frame.setVisible(true);
 		frame.setSize(400, 300);
 		frame.add(panel);
-
-		addgame.setLabel("Add game");
-		viewList.setLabel("View List");
-		removegame.setLabel("Remove game");
-		saveList.setLabel("Save List");
-		loadList.setLabel("Load List");
 
 		panel.add(addgame);
 		panel.add(viewList);
@@ -74,7 +79,7 @@ public class SaveToFiles implements ActionListener {
 
 		if (e.getSource() == addgame) {
 			String game = JOptionPane.showInputDialog("Enter a game to be saved");
-			gameList.add(game);
+			gameList.add(":" + game);
 		}
 
 		String display = "";
@@ -97,10 +102,37 @@ public class SaveToFiles implements ActionListener {
 		}
 		if (e.getSource() == saveList) {
 			try {
-				FileWriter saveFile = new FileWriter("src/FinalJavaProject/SavedContents.txt");
-				saveFile.write(display);
-				saveFile.close();
+				BufferedReader load = new BufferedReader(new FileReader("src/FinalJavaProject/SavedContents.txt"));
+				FileWriter saveFile = new FileWriter("src/FinalJavaProject/SavedContents.txt", true);
 
+				String temp = "";
+				temp = load.readLine();
+				if (temp == null) {
+					saveFile.write(getUsername() + "\n\n");
+					saveFile.write(display);
+					saveFile.write(getUsername() + ":\n\n");
+					saveFile.close();
+				}
+				while (temp != null) {
+
+					if (temp.equals(getUsername())) {
+						if (temp.equals(getUsername())) {
+							printText = true;
+						} else if (temp.contains(getUsername() + ":")) {
+							printText = false;
+						}
+						if (printText == true) {
+							saveFile.write(display);
+						}
+					} else {
+						saveFile.write(getUsername() + "\n\n");
+						saveFile.write(display);
+						saveFile.write(getUsername() + ":\n\n");
+						saveFile.close();
+					}
+					temp = load.readLine();
+				}
+				load.close();
 			} catch (IOException p) {
 				p.printStackTrace();
 			}
@@ -113,8 +145,15 @@ public class SaveToFiles implements ActionListener {
 				String temp = "";
 				temp = load.readLine();
 				while (temp != null) {
+					if (temp.equals(getUsername())) {
+						printText = true;
+					} else if (temp.contains(getUsername() + ":")) {
+						printText = false;
+					}
+					if (printText == true) {
+						fileContents += temp + "\n";
+					}
 
-					fileContents += temp + "\n";
 					temp = load.readLine();
 				}
 
