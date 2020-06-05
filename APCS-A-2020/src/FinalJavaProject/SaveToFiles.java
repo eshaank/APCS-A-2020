@@ -4,11 +4,15 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.stream.Stream;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -38,11 +42,8 @@ public class SaveToFiles extends Setting implements ActionListener {
 	boolean printText = false;
 
 	ArrayList<String> gameList = new ArrayList<String>();
-
-//	public static void main(String[] args) {
-//		SaveToFiles test = new SaveToFiles();
-//		test.gameLibrary();
-//	}
+	ArrayList<String> tempList = new ArrayList<>();
+	// File updatedFile = new File("src/FinalJavaProject/UpdatedSavedContents.txt");
 
 	@SuppressWarnings("deprecation")
 	public void gameLibrary() {
@@ -107,35 +108,32 @@ public class SaveToFiles extends Setting implements ActionListener {
 
 				String temp = "";
 				temp = load.readLine();
-				if (temp == null) {
-					saveFile.write(getUsername() + "\n\n");
-					saveFile.write(display);
-					saveFile.write(getUsername() + ":\n\n");
-					saveFile.close();
-				}
 				while (temp != null) {
-
 					if (temp.equals(getUsername())) {
-						if (temp.equals(getUsername())) {
-							printText = true;
-						} else if (temp.contains(getUsername() + ":")) {
-							printText = false;
-						}
-						if (printText == true) {
-							saveFile.write(display);
-						}
-					} else {
-						saveFile.write(getUsername() + "\n\n");
+						printText = true;
+					} else if (temp.contains(getUsername() + ":")) {
+						printText = false;
+					}
+					if (printText == true) {
+						//tempList.add(temp + "\n");
 						saveFile.write(display);
-						saveFile.write(getUsername() + ":\n\n");
 						saveFile.close();
 					}
+
 					temp = load.readLine();
 				}
 				load.close();
+//				for (int i = 0; i < tempList.size(); i++) {
+//						tempList.add(display);
+//					
+//					//saveFile.write(tempList.get(i));
+//				}
+//				System.out.println(tempList);
+				saveFile.close();
 			} catch (IOException p) {
 				p.printStackTrace();
 			}
+
 		}
 		if (e.getSource() == loadList) {
 			try {

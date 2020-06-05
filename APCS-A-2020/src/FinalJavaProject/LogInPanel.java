@@ -114,10 +114,10 @@ public class LogInPanel extends Setting {
 				String key = parts[0];
 				String value = parts[1];
 				NewAcctPanel.usersMap.put(key, value);
-				System.out.println("adding");
-				System.out.println(NewAcctPanel.usersMap);
+				//System.out.println("adding");
+				//System.out.println(NewAcctPanel.usersMap);
 			} else {
-				System.out.println(NewAcctPanel.usersMap);
+				//System.out.println(NewAcctPanel.usersMap);
 			}
 
 		}
