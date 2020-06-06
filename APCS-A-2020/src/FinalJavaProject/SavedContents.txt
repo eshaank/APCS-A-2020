@@ -1,4 +1,6 @@
 eshaan
+:chess
+
 :r6s
 :snake
 :this is a test
