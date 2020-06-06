@@ -1,5 +1,7 @@
 package FinalJavaProject;
 
+import javax.swing.JOptionPane;
+
 public class Setting {
 	private static String username;
 	private static String password;
@@ -85,5 +87,9 @@ public class Setting {
 
 	public static void setPassword(String pass) {
 		password = pass;
+	}
+	
+	public String String() {
+		return "Game: " + getName() + "\nCompany: " + getCompany() + "\nRating: " + getRating() + "\nGenre " + getGenre() + "\nPlatform: " + getPlatform() + "\nHighScore (if applicable): " + getHighScore();
 	}
 }

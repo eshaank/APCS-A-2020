@@ -9,10 +9,13 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.LineNumberReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.stream.Stream;
+import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -22,7 +25,6 @@ import javax.swing.JPanel;
 public class SaveToFiles extends Setting implements ActionListener {
 	public SaveToFiles(String game, int highscore, String companyName, String genre, double rating, String platform) {
 		super(game, highscore, companyName, genre, rating, platform);
-		// TODO Auto-generated constructor stub
 	}
 
 	public SaveToFiles() {
@@ -38,12 +40,14 @@ public class SaveToFiles extends Setting implements ActionListener {
 	JButton saveList;
 	JButton loadList;
 	JButton viewGameDetails;
+	JButton startScreen;
 
 	boolean printText = false;
 
-	ArrayList<String> gameList = new ArrayList<String>();
+	ArrayList<String> gameList = new ArrayList<>();
 	ArrayList<String> tempList = new ArrayList<>();
-	// File updatedFile = new File("src/FinalJavaProject/UpdatedSavedContents.txt");
+	ArrayList<String> viewDetailsList = new ArrayList<>(); // File updatedFile = new
+															// File("src/FinalJavaProject/UpdatedSavedContents.txt");
 
 	@SuppressWarnings("deprecation")
 	public void gameLibrary() {
@@ -55,7 +59,8 @@ public class SaveToFiles extends Setting implements ActionListener {
 		removegame = new JButton("Remove game");
 		saveList = new JButton("Save List");
 		loadList = new JButton("Load List");
-		viewGameDetails = new JButton();
+		viewGameDetails = new JButton("View Game Details");
+		startScreen =  new JButton("Log Out");
 
 		frame.setVisible(true);
 		frame.setSize(400, 300);
@@ -66,12 +71,16 @@ public class SaveToFiles extends Setting implements ActionListener {
 		panel.add(removegame);
 		panel.add(saveList);
 		panel.add(loadList);
+		panel.add(viewGameDetails);
+		panel.add(startScreen);
 
 		addgame.addActionListener(this);
 		viewList.addActionListener(this);
 		removegame.addActionListener(this);
 		saveList.addActionListener(this);
 		loadList.addActionListener(this);
+		viewGameDetails.addActionListener(this);
+		startScreen.addActionListener(this);
 
 	}
 
@@ -80,6 +89,27 @@ public class SaveToFiles extends Setting implements ActionListener {
 
 		if (e.getSource() == addgame) {
 			String game = JOptionPane.showInputDialog("Enter a game to be saved");
+			String highscore = JOptionPane.showInputDialog("Enter the highscore");
+			String companyName = JOptionPane.showInputDialog("Enter the company name");
+			String genre = JOptionPane.showInputDialog("Enter the genre");
+			String rating = JOptionPane.showInputDialog("Enter the rating");
+			String platform = JOptionPane.showInputDialog("Enter platform");
+
+			int score = Integer.parseInt(highscore);
+			double ratings = Double.parseDouble(rating);
+
+			setGameName(game);
+
+			setHighScore(score);
+
+			setCompany(companyName);
+
+			setGenre(genre);
+
+			setRating(ratings);
+
+			setPlatform(platform);
+
 			gameList.add(":" + game);
 		}
 
@@ -99,39 +129,42 @@ public class SaveToFiles extends Setting implements ActionListener {
 					gameList.remove(i);
 				}
 			}
-			System.out.println(gameList);
 		}
 		if (e.getSource() == saveList) {
+			Path path = Paths.get("src/FinalJavaProject/SavedContents.txt");
+			List<String> lines;
 			try {
 				BufferedReader load = new BufferedReader(new FileReader("src/FinalJavaProject/SavedContents.txt"));
 				FileWriter saveFile = new FileWriter("src/FinalJavaProject/SavedContents.txt", true);
+				File file = new File("src/FinalJavaProject/SavedContents.txt");
+				LineNumberReader lineNumberReader = new LineNumberReader(new FileReader(file));
+				Path path1 = Paths.get("src/FinalJavaProject/SavedContents.txt");
 
 				String temp = "";
 				temp = load.readLine();
-				while (temp != null) {
-					if (temp.equals(getUsername())) {
-						printText = true;
-					} else if (temp.contains(getUsername() + ":")) {
-						printText = false;
-					}
-					if (printText == true) {
-						//tempList.add(temp + "\n");
-						saveFile.write(display);
-						saveFile.close();
-					}
 
-					temp = load.readLine();
+				while (temp != null) {
+
+					if (temp.contains(getUsername())) {
+						// lineNumberReader.skip(Long.MAX_VALUE);
+						int lines1 = lineNumberReader.getLineNumber() + 1;
+						lineNumberReader.close();
+
+						lines = Files.readAllLines(path, StandardCharsets.UTF_8);
+
+						int position = lines1;
+						String extraLine = display;
+
+						lines.add(position, extraLine);
+						Files.write(path, lines, StandardCharsets.UTF_8);
+
+					}
+					break;
 				}
-				load.close();
-//				for (int i = 0; i < tempList.size(); i++) {
-//						tempList.add(display);
-//					
-//					//saveFile.write(tempList.get(i));
-//				}
-//				System.out.println(tempList);
-				saveFile.close();
-			} catch (IOException p) {
-				p.printStackTrace();
+
+			} catch (IOException e2) {
+
+				e2.printStackTrace();
 			}
 
 		}
@@ -166,6 +199,24 @@ public class SaveToFiles extends Setting implements ActionListener {
 				// TODO Auto-generated catch block
 				p2.printStackTrace();
 			}
+		}
+
+		if (e.getSource() == viewGameDetails) {
+
+			ArrayList<String> showDetails = new ArrayList<>();
+			String remove = JOptionPane.showInputDialog("Enter a game to view details for: \n" + display);
+			for (int i = 0; i < gameList.size(); i++) {
+
+				if (gameList.get(i).equalsIgnoreCase(remove)) {
+					JOptionPane.showMessageDialog(null, String());
+				}
+
+			}
+
+		}
+		if (e.getSource() == startScreen) {
+			StartScreen start = new StartScreen();
+			start.startScreen();
 		}
 	}
 }
